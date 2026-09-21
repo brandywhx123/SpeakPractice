@@ -30,6 +30,9 @@ local.properties
 .idea/
 .navigation/
 
+# ---- VS Code ----
+.vscode/
+
 # ---- Kotlin ----
 .kotlin/
 

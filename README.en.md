@@ -1,4 +1,4 @@
-# English & Chinese Pronunciation Trainer (EnCnVoice)
+# English & Chinese Pronunciation Trainer (SpeakPractice)
 
 **中文文档: [README.md](README.md)**
 
@@ -30,7 +30,7 @@ An Android pronunciation training app built with Kotlin: play the standard pronu
 ## Project Structure
 
 ```
-EnCnVoice/
+SpeakPractice/
 ├── settings.gradle                    # Gradle project settings
 ├── build.gradle                       # Root build script
 ├── gradle.properties                  # Gradle properties
@@ -112,7 +112,7 @@ $env:PATH = "$env:JAVA_HOME\bin;$env:PATH"
 .\gradlew.bat assembleDebug
 ```
 
-Output: `app\build\outputs\apk\debug\app-debug.apk`
+Output: `app\build\outputs\apk\debug\SpeakPractice.apk`
 
 macOS / Linux:
 

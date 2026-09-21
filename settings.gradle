@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "PronunciationAssistant"
+rootProject.name = "SpeakPractice"
 include ':app'

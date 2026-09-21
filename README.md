@@ -1,4 +1,4 @@
-# 中英文发音训练助手 (EnCnVoice)
+# 中英文发音训练助手 (SpeakPractice)
 
 **English version: [README.en.md](README.en.md)**
 
@@ -30,7 +30,7 @@
 ## 项目结构
 
 ```
-EnCnVoice/
+SpeakPractice/
 ├── settings.gradle                    # Gradle 项目配置
 ├── build.gradle                       # 项目级构建脚本
 ├── gradle.properties                  # Gradle 属性
@@ -112,7 +112,7 @@ $env:PATH = "$env:JAVA_HOME\bin;$env:PATH"
 .\gradlew.bat assembleDebug
 ```
 
-产物路径：`app\build\outputs\apk\debug\app-debug.apk`
+产物路径：`app\build\outputs\apk\debug\SpeakPractice.apk`
 
 macOS / Linux：
 

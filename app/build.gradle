@@ -28,6 +28,13 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+
+    // 自定义 APK 输出文件名: SpeakPractice.apk
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "SpeakPractice.apk"
+        }
+    }
 }
 
 dependencies {
