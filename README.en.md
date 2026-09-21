@@ -146,7 +146,7 @@ chmod +x gradlew
 
 ## License
 
-This project is for learning and educational purposes; feel free to study and modify it.
+This project is licensed under the [MIT License](LICENSE). You are free to use, modify, distribute, and use it commercially, provided the original copyright and permission notices are retained.
 
 ---
 
