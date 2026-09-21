@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">发音训练助手</string>
+    <string name="app_title">中英文发音训练助手</string>
+    <string name="hint_input">请输入待练习的单词或句子</string>
+    <string name="btn_play">播放标准音</string>
+    <string name="btn_train">开始发音训练</string>
+    <string name="result_waiting">等待训练...</string>
+    <string name="lang_english">英文</string>
+    <string name="lang_chinese">中文</string>
+    <string name="lang_label">训练语言</string>
+    <string name="waveform_section_title">声音波形对比</string>
+    <string name="waveform_standard_label">标准发音波形（上栏）</string>
+    <string name="waveform_user_label">用户发音波形（下栏）</string>
+</resources>

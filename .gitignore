@@ -1,0 +1,43 @@
+# ============================================================
+# Android / Gradle .gitignore
+# 仅忽略可再生产物与本机配置；Gradle Wrapper（gradlew 及
+# gradle/wrapper/gradle-wrapper.jar）必须纳入版本控制，
+# 以保证其他人 clone 后无需预装 Gradle 即可构建。
+# ============================================================
+
+# ---- Gradle ----
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+
+# ---- 构建产物 ----
+build/
+app/build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# ---- 本机专属配置（SDK 路径因人而异，禁止提交）----
+local.properties
+
+# ---- Android Studio / IntelliJ ----
+*.iml
+.idea/
+.navigation/
+
+# ---- Kotlin ----
+.kotlin/
+
+# ---- 日志与临时文件 ----
+*.log
+*.hprof
+*.tmp
+
+# ---- 操作系统杂项 ----
+.DS_Store
+Thumbs.db

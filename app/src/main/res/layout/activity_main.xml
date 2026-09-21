@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_main.xml - 主界面布局 (紧凑一屏版)
+    中英文发音训练助手
+
+    UI 设计规范（紧凑垂直布局 Compact Vertical Layout）:
+    ┌─────────────────────────────┐
+    │ 标题                         │
+    │ 语言选择 (RadioGroup)        │
+    │ 输入框 (TextInputEditText)   │
+    │ [播放标准音] [开始发音训练]  │
+    │ 结果显示区 (TextView)        │
+    │ 声音波形对比                 │
+    │   上栏: 标准发音波形         │
+    │   下栏: 用户发音波形         │
+    └─────────────────────────────┘
+
+    布局策略:
+    - 使用 LinearLayout 直接作为根布局 (不嵌套 ScrollView)
+    - 各控件 margin/padding 压缩到最小，保证一屏可见
+    - 字号适度减小 (标题 18sp，正文 14sp)
+    - 波形 View 高度 48dp，足够展示波形又节省空间
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- ==================== 应用标题 ==================== -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/app_title"
+        android:textColor="#1565C0"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- ==================== 语言选择区 ==================== -->
+    <!-- RadioGroup: 用户选择训练语言 (英文 / 中文)
+         - 英文: TTS 用 Locale.US，语音识别用 en-US
+         - 中文: TTS 用 Locale.SIMPLIFIED_CHINESE，语音识别用 zh-CN -->
+    <RadioGroup
+        android:id="@+id/rgLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/lang_label"
+            android:textColor="#616161"
+            android:textSize="14sp"
+            android:layout_gravity="center_vertical" />
+
+        <!-- 英文选项 (默认选中) -->
+        <RadioButton
+            android:id="@+id/rbEnglish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:checked="true"
+            android:text="@string/lang_english"
+            android:textSize="14sp" />
+
+        <!-- 中文选项 -->
+        <RadioButton
+            android:id="@+id/rbChinese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lang_chinese"
+            android:textSize="14sp" />
+    </RadioGroup>
+
+    <!-- ==================== 顶部区域: 文本输入框 ==================== -->
+    <!-- EditText: 用于输入待练习的英文单词或句子 -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_input">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="2"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- ==================== 顶部区域: 播放标准音按钮 ==================== -->
+    <!-- Button: 位于文本框正下方，点击后通过 TTS 播放输入内容的标准英语发音 -->
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#2196F3"
+        android:text="@string/btn_play"
+        android:textSize="14sp" />
+
+    <!-- ==================== 中部区域: 开始发音训练按钮 ==================== -->
+    <!-- Button: 位于播放按钮下方，点击后调用麦克风录音并启动语音识别 -->
+    <Button
+        android:id="@+id/btnTrain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#4CAF50"
+        android:text="@string/btn_train"
+        android:textSize="14sp" />
+
+    <!-- ==================== 底部区域: 结果显示区 ==================== -->
+    <!-- TextView: 位于训练按钮下方，显示差异百分比或发音正确率
+         初始状态显示 "等待训练..." -->
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="#F5F5F5"
+        android:padding="12dp"
+        android:text="@string/result_waiting"
+        android:textColor="#424242"
+        android:textSize="14sp" />
+
+    <!-- ==================== 声音波形显示区 ==================== -->
+    <!-- 位于结果显示区下方，包含上下两栏:
+         - 上栏: 标准发音波形 (点击"播放标准音"时显示)
+         - 下栏: 用户发音波形 (语音识别完成后显示) -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/waveform_section_title"
+        android:textColor="#1565C0"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <!-- 上栏: 标准发音波形 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="@string/waveform_standard_label"
+            android:textColor="#2196F3"
+            android:textSize="12sp" />
+
+        <com.example.pronunciationassistant.WaveformView
+            android:id="@+id/waveformStandard"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#F5F5F5" />
+    </LinearLayout>
+
+    <!-- 下栏: 用户发音波形 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="@string/waveform_user_label"
+            android:textColor="#4CAF50"
+            android:textSize="12sp" />
+
+        <com.example.pronunciationassistant.WaveformView
+            android:id="@+id/waveformUser"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#F5F5F5" />
+    </LinearLayout>
+
+</LinearLayout>
